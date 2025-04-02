@@ -1,0 +1,158 @@
+﻿@{
+	ViewData["Title"] = "Portfolio";
+}
+
+
+<!-- SPLITSCREEN -->
+<div class="pxsnap_page_splitscreen portfolio_page">
+	<div class="pxsnap_page_splitleft">
+		<div class="splitscreen_title">
+			<div class="in">
+
+				<div class="title_holder">
+					<h1>Portfolio Page</h1>
+					<p>Cras aliquam sagittis urna in consectetur. Aenean felis lacus.</p>
+				</div>
+
+			</div>
+		</div>
+		<div class="splitscreen_title_back">
+			<div class="bg" style="height: 100%!important;"></div>
+		</div>
+	</div>
+	<div class="pxsnap_page_splitright">
+		<div class="in">
+
+			<!-- RIGHT CONTENT HERE -->
+			<!-- BREADCRUMBS -->
+			<div class="pxsnap_breadcrumbs">
+				<div class="pxsnap_breadcrumbs_content">
+					<div class="container">
+						<p>
+							<a asp-controller="Home" asp-action="Index">Home</a>
+							/
+							<span>Portfolio</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- /BREADCRUMBS -->
+			<!-- PORTFOLIO2 -->
+			<div class="pxsnap_portfolio_second" data-title-style="">
+				<div class="pxsnap_portfolio_second_inner">
+					<div class="portfolio_second">
+
+						<div class="list">
+							<ul class="portfolio_second_list pxsnap_masonry">
+								<li class="pxsnap_masonry_in">
+									<div class="single">
+										<div class="img_holder">
+											<img src="~/img/gallery/01.jpg" alt="" />
+										</div>
+										<div class="title_holder">
+											<span><a href="#">Studio</a></span>
+											<h3><a asp-controller="Portfolio" asp-action="Album1">Album 1</a></h3>
+										</div>
+									</div>
+								</li>
+								<li class="pxsnap_masonry_in">
+									<div class="single">
+										<div class="img_holder">
+											<img src="~/img/gallery/05.jpg" alt="" />
+										</div>
+										<div class="title_holder">
+											<span><a href="#">Studio</a></span>
+											<h3><a asp-controller="Portfolio" asp-action="Album2">Album 2</a></h3>
+										</div>
+									</div>
+								</li>
+								<li class="pxsnap_masonry_in">
+									<div class="single">
+										<div class="img_holder">
+											<img src="~/img/gallery/07.jpg" alt="" />
+										</div>
+										<div class="title_holder">
+											<span
+												style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+												<a href="#">Studio</a></span>
+											<h3><a asp-controller="Portfolio" asp-action="Album3">Album 3</a></h3>
+										</div>
+									</div>
+								</li>
+								<li class="pxsnap_masonry_in">
+									<div class="single">
+										<div class="img_holder">
+											<img src="~/img/gallery/11.jpg" alt="" />
+										</div>
+										<div class="title_holder">
+											<span><a href="#">Studio</a></span>
+											<h3><a asp-controller="Portfolio" asp-action="Album4">Album 4</a></h3>
+										</div>
+									</div>
+								</li>
+								<li class="pxsnap_masonry_in">
+									<div class="single">
+										<div class="img_holder">
+											<img src="~/img/gallery/14.jpg" alt="" />
+										</div>
+										<div class="title_holder">
+											<span><a href="#">Studio</a></span>
+											<h3><a asp-controller="Portfolio" asp-action="Album5">Album 5</a></h3>
+										</div>
+									</div>
+								</li>
+								<li class="pxsnap_masonry_in">
+									<div class="single">
+										<div class="img_holder">
+											<img src="~/img/gallery/17.jpg" alt="" />
+										</div>
+										<div class="title_holder">
+											<span><a href="#">Studio</a></span>
+											<h3><a asp-controller="Portfolio" asp-action="Album6">Album 6</a></h3>
+										</div>
+									</div>
+								</li>
+								<li class="pxsnap_masonry_in">
+									<div class="single">
+										<div class="img_holder">
+											<img src="~/img/gallery/21.jpg" alt="" />
+										</div>
+										<div class="title_holder">
+											<span><a href="#">Studio</a></span>
+											<h3><a asp-controller="Portfolio" asp-action="Album7">Album 7</a></h3>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<!-- PAGINATION -->
+						@* <div class="pxsnap_pagination">
+							<div class="pagination">
+								<ul>
+									<li><a class="active" href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li class="next"><a href="#">Next</a></li>
+								</ul>
+							</div>
+						</div> *@
+						<!-- /PAGINATION -->
+					</div>
+				</div>
+			</div>
+			<!-- /PORTFOLIO2 -->
+			<!-- FOOTER -->
+			<footer class="pxsnap_ab_footer" style="padding:10%;">
+				<div class="copyright">
+					<span>Copyright 2025. Designed by <a href="#">PixelSnapshot</a></span>
+				</div>
+			</footer>
+			<!-- /FOOTER -->
+			<!-- /RIGHT CONTENT HERE -->
+
+		</div>
+	</div>
+</div>
+<!-- /SPLITSCREEN -->

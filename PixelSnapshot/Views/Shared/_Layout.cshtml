@@ -5,47 +5,233 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PixelSnapshot</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PixelSnapshot.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,400i,700,700i|Poppins:300,400,500,600,700&amp;subset=cyrillic"
+          rel="stylesheet">
+    <!-- STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/css/plugins.css?ver=1">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css?ver=1">
+    <!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
+    <!-- /STYLES -->
+    @await RenderSectionAsync("Styles", required: false)
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PixelSnapshot</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+@model PixelSnapshot.Models.GalleryModel
+<body cz-shortcut-listen="true">
+
+    <!-- WRAPPER ALL -->
+    <div class="pxsnap_wrapper_all" data-totop="on">
+
+        <!-- HEADER -->
+        @{
+            var headerClass = (ViewData["IsHome"] != null && (bool)ViewData["IsHome"]) ? "pxsnap_header absolute" : "pxsnap_header";
+            var headerDataTheme = (ViewData["IsHome"] != null && (bool)ViewData["IsHome"]) ? "translight" : "";
+        }
+        <header class="@headerClass" data-theme="@headerDataTheme">
+            <div class="pxsnap_header_content">
+                <div class="header_inner">
+
+                    <!-- FOR MOBILE DEVICES -->
+                    <div class="header_mobile_logo">
+                        <a asp-controller="Home" asp-action="Index">
+                            <img class="light" src="~/img/logo-light.png" alt="">
+                            <img class="dark" src="~/img/logo-dark.png" alt="">
+                        </a>
+                    </div>
+                    <!-- /FOR MOBILE DEVICES -->
+                    <!-- FOR HUGESIZE SCREENS -->
+                    <div class="header_list">
+                        <ul class="nav__hor">
+                            <li><a class="pxsnap_animated_link" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a class="pxsnap_animated_link" asp-controller="Home" asp-action="Gallery">Gallery</a></li>
+                            <li><a class="pxsnap_animated_link" asp-controller="Portfolio" asp-action="Index">Portfolio</a></li>
+                        </ul>
+                        <div class="logo">
+                            <a asp-controller="Home" asp-action="Index">
+                                <img class="light" src="~/img/logo-light.png" alt="" />
+                                <img class="dark" src="~/img/logo-dark.png" alt="" />
+                            </a>
+                        </div>
+                        <ul class="nav__hor">
+                            <li>
+                                <a class="pxsnap_animated_link" href="#">Blog</a>
+                                <ul class="sub_menu">
+                                    <li><a class="pxsnap_animated_link" asp-controller="Blog" asp-action="Index">Blog</a></li>
+                                    <li><a class="pxsnap_animated_link" asp-controller="Blog" asp-action="BlogSingle">Blog Single</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="pxsnap_animated_link" asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                            <li><a class="pxsnap_animated_link" asp-controller="Home" asp-action="About">About</a></li>
+                        </ul>
+                    </div>
+                    <!-- /FOR HUGESIZE SCREENS -->
+                    <!-- EXTRA BUTTONS -->
+                    <div class="header_helper">
+                        <ul>
+                            <li class="search">
+                                <a href="#"><img class="svg" src="~/img/svg/search.svg" alt="" /></a>
+                                <div class="pxsnap_search">
+                                    <div class="in">
+                                        <input type="search" id="searchBox" placeholder="Search" />
+                                        @* <input type="search" id="searchBox" placeholder="Search" value="@Model.SearchQuery ?? " " " /> *@
+                                        <a href="#"><img class="svg" src="~/img/svg/search.svg" alt="" /></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="share">
+                                <a href="#"><img class="svg" src="~/img/svg/share.svg" alt="" /></a>
+                                <ul class="hidden">
+                                    <li><a href="#"><i class="xcon-facebook-1"></i></a></li>
+                                    <li><a href="#"><i class="xcon-instagram"></i></a></li>
+                                    <li><a href="#"><i class="xcon-pinterest-1"></i></a></li>
+                                    <li><a href="#"><i class="xcon-twitter-1"></i></a></li>
+                                    <li><a href="#"><i class="xcon-gplus-1"></i></a></li>
+                                </ul>
+                            </li>
+                            <li class="trigger">
+                                <a href="#">
+                                    <span class="trigger">
+                                        <span class="a"></span>
+                                        <span class="b"></span>
+                                        <span class="c"></span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="mobile_trigger">
+                                <div class="hamburger hamburger--collapse-r">
+                                    <div class="hamburger-box">
+                                        <div class="hamburger-inner"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- EXTRA BUTTONS -->
+
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - PixelSnapshot - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </header>
+        <!-- /HEADER -->
+        <!-- MOBILE MENU -->
+        <div class="pxsnap_mobilemenu_wrap" style="display: none; padding-top: 69px;">
+            <div class="pxsnap_mobilemenu">
+                <div class="container">
+                    <div class="mobilemenu">
+                        <ul class="vert_menu_list nav_ver">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li><a asp-controller="Home" asp-action="Gallery">Gallery</a></li>
+                            <li><a class="pxsnap_animated_link" asp-controller="Portfolio" asp-action="Index">Portfolio</a></li>
+                            <li>
+                                <a class="pxsnap_animated_link" href="#">Blog</a>
+                                <ul class="sub_menu">
+                                    <li><a class="pxsnap_animated_link" asp-controller="Blog" asp-action="Index">Blog</a></li>
+                                    <li><a class="pxsnap_animated_link" asp-controller="Blog" asp-action="BlogSingle">Blog Single</a></li>
+                                </ul>
+                            </li>
+                            <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                            <li><a asp-controller="Home" asp-action="About">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <!-- /MOBILE MENU -->
+
+        <div id="floatingmes">Close</div>
+
+        <!-- VERTICAL MENU -->
+        <div class="pxsnap_vertmenu" style="height: 912px;">
+            <div class="pxsnap_vertmenu_content scrollable" style="height: 912px; overflow: hidden; outline: none;"
+                 tabindex="5000">
+
+                <div class="vertmenu_content">
+                    <div class="vertmenu">
+
+                        <div class="vert_lorem">
+                            <p>
+                                Cras aliquam sagittis urna in consectetur. Aenean felis lacus. Curabitur vitae neque
+                                orci. Cras tincidunt sit amet tellus ac tincidunt. Suspendisse feugiat
+                            </p>
+                        </div>
+                        <div class="vert_sign">
+                            <img src="~/img/sign-light.png" alt="sign">
+                        </div>
+                        <ul class="vert_menu_list nav_ver">
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Home" asp-action="Gallery">Gallery</a></li>
+                            <li><a asp-controller="Portfolio" asp-action="Index">Portfolio</a></li>
+                            <li>
+                                <a href="#">Blog</a>
+                                <ul class="sub_menu">
+                                    <li><a class="pxsnap_animated_link" asp-controller="Blog" asp-action="Index">Blog</a></li>
+                                    <li><a class="pxsnap_animated_link" asp-controller="Blog" asp-action="BlogSingle">Blog Single</a></li>
+                                </ul>
+                            </li>
+                            <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                            <li><a asp-controller="Home" asp-action="About">About</a></li>
+                        </ul>
+
+                        <div class="vert_instagram">
+                            <div class="inst">
+                                <ul>
+                                    <li><a href="#"><img src="~/img/vert_menu/inst9.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="~/img/vert_menu/inst1.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="~/img/vert_menu/inst4.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="~/img/vert_menu/inst6.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="~/img/vert_menu/inst7.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="~/img/vert_menu/inst8.jpg" alt=""></a></li>
+                                </ul>
+                            </div>
+                            <a href="#">Instagram Feed</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="vertmenu_secondary"></div>
+            <div class="pxsnap_vertmenu_left"></div>
+        </div>
+        <!-- /VERTICAL MENU -->
+
+		<!-- CONTENT -->
+        <div class="pxsnap_content" id="galleryContainer">
+            @RenderBody()
+        </div>
+		<!-- /CONTENT -->
+        
+        @if (Context.Request.Path == "/" || Context.Request.Path == "/Home/Gallery")
+        {
+            var footerClass = (ViewData["IsHome"] != null && (bool)ViewData["IsHome"]) ? "pxsnap_footer" : "pxsnap_ab_footer";
+            var footerStyle = (ViewData["IsHome"] != null && (bool)ViewData["IsHome"]) ? "" : "padding:10%;";
+
+            <!-- FOOTER -->
+            <footer class="@footerClass"  style="@footerStyle">
+                <div class="copyright">
+                    <span>Copyright 2025. Designed by <a href="#">PixelSnapshot</a></span>
+                </div>
+            </footer>
+            <!-- /FOOTER -->
+        }
+        else
+        {
+            
+        }
+        <a class="totop" href="#"><span class="line"></span></a>
+    </div>
+    <!-- / WRAPPER ALL -->
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->
+    <script type="text/javascript" src="~/js/plugins.js?ver=1"></script>
+    <script type="text/javascript" src="~/js/init.js?ver=1"></script>
+    <script type="text/javascript" src="~/js/px.js"></script>
+    @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script> *@
     @await RenderSectionAsync("Scripts", required: false)
+    <!-- /SCRIPTS -->
 </body>
 </html>
